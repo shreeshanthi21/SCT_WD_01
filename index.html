@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D&O Clothing Store</title>
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #333; 
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .navbar {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #fff;
+            padding: 8px 12px;
+            transition: background 0.3s;
+        }
+
+        .navbar a.active,
+        .navbar a:hover {
+            border-radius: 5px;
+        }
+
+        .icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .icons div {
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .home-section, .about-section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .home-section {
+            background-color: #f4f4f4;
+            position: relative;
+            color: white;
+        }
+
+        .home-image {
+            width: 100%;
+            max-width: 1330px;
+            height: auto;
+            display: block;
+            border-radius: 0.5px;
+        }
+
+        .overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            background-color: rgba(208, 122, 46, 0.4);
+            color: white;
+            padding: 20px;
+            font-size: 4rem; /* Larger font size */
+            font-weight: bold;
+            text-transform: uppercase;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        .about-section {
+    position: relative;
+    width: 100%;
+    height: 100%; /* Adjust as needed */
+}
+
+.image-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.image-container img {
+    flex: 1;
+    width: 16.66%;
+    height: auto;
+    object-fit: cover;
+}
+
+.about-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; /* Adjust color for contrast */
+    text-align: center;
+    z-index: 1; /* Ensure text is above images */
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5); /* Optional: Add a background for readability */
+}
+
+.about-text h1 {
+    font-size: 2em; /* Adjust size as needed */
+}
+
+.about-text p {
+    font-size: 1em; /* Adjust size as needed */
+}
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                background-color: #444;
+                position: absolute;
+                top: 60px;
+                left: -100%;
+                width: 100%;
+                transition: left 0.3s ease;
+            }
+
+            .navbar a {
+                padding: 15px;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid #555;
+            }
+
+            .navbar.active {
+                left: 0;
+            }
+
+            #menu-btn {
+                display: block;
+            }
+
+            .home-section {
+                padding: 60px 10px;
+            }
+            .about-section{
+                padding: 60px 10px;
+            }
+
+            .overlay-text {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 20px;
+            }
+
+            .navbar a {
+                padding: 10px;
+                font-size: 16px;
+            }
+
+            .overlay-text {
+                font-size: 2rem;
+                left: 10px;
+            }
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        /* Services Section Styles */
+.services-section {
+    padding: 60px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.services-section h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.services-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.service-item {
+    flex: 1;
+    max-width: 300px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.service-item i {
+    font-size: 3rem;
+    color: #d07a2e;
+    margin-bottom: 20px;
+}
+
+.service-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.service-item p {
+    font-size: 1rem;
+    color: #666;
+}
+
+.service-item:hover {
+    transform: translateY(-10px);
+}
+/* Contact Section Styles */
+.contact-section {
+    padding: 60px 20px;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.contact-section h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.contact-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.contact-item {
+    flex: 1;
+    max-width: 300px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-item i {
+    font-size: 2.5rem;
+    color: #d07a2e;
+    margin-bottom: 20px;
+}
+
+.contact-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.contact-item p {
+    font-size: 1rem;
+    color: #666;
+}
+
+.contact-item:hover {
+    transform: translateY(-10px);
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <a href="#" class="logo"> <i class="fas fa-tshirt"></i> D&O </a>
+        <nav class="navbar" id="navbar">
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="home-section">
+        <img src="C:\Users\Shree Shanthi\OneDrive\Desktop\LANDING_PAGE\images\home1.png" alt="Home Page Image" class="home-image">
+        <div class="overlay-text">Welcome to D&O</div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="image-container">
+            <img src="C:\Users\Shree Shanthi\OneDrive\Desktop\LANDING_PAGE\images\content1.jpg" alt="Content 1">
+            <img src="C:\Users\Shree Shanthi\OneDrive\Desktop\LANDING_PAGE\images\content2.jpg" alt="Content 2">
+            <img src="C:\Users\Shree Shanthi\OneDrive\Desktop\LANDING_PAGE\images\content3.jpg" alt="Content 3">
+            <img src= "C:\Users\Shree Shanthi\OneDrive\Desktop\LANDING_PAGE\images\content4.png" alt="Content 4">
+            <img src="C:\Users\Shree Shanthi\OneDrive\Desktop\LANDING_PAGE\images\content5.jpeg" alt="Content 5">
+            <img src="C:\Users\Shree Shanthi\OneDrive\Desktop\LANDING_PAGE\images\content6.jpeg" alt="Content 6">
+        </div>
+        <div class="about-text" >
+            <h1>ABOUT US</h1>
+            <p>Welcome to D&O, your go-to destination for the latest in fashion. Founded in 2015, D&O has been at the forefront of delivering stylish and affordable clothing to fashion enthusiasts. Our mission is to provide high-quality, trendy clothing that makes our customers feel confident and fashionable.</p>
+        <p>At D&O, we believe that fashion is for everyone. Whether you're looking for the perfect outfit for a night out or something comfortable for everyday wear, we've got you covered. Join us on our fashion journey and discover your unique style with D&O.</p>
+        </div>
+    </section>
+        <!-- Services Section -->
+        <section id="services" class="services-section">
+            <h2>Our Services</h2>
+            <div class="services-container">
+                <div class="service-item">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Available At?</h3>
+                    <p>Branches in Coimbatore, Chennai, Banglore, Hyderabad and Delhi.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-sync-alt"></i>
+                    <h3>Easy Returns</h3>
+                    <p>Not satisfied with your purchase? No worries! We offer easy and hassle-free returns within 30 days.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7 Support</h3>
+                    <p>Our customer service team is here to help you with any inquiries. Reach out to us anytime, and we'll be happy to assist you.</p>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <h2>Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>info@dnoclothing.com</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Branch Coimbatore</h3>
+                    <p>+91 83123xxxx</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Branch Chennai</h3>
+                    <p>+91 83123xxxx</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Branch Banglore</h3>
+                    <p>+91 83123xxxx</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Branch Hyderabad</h3>
+                    <p>+91 83123xxxx</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Branch Delhi</h3>
+                    <p>+91 83123xxxx</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-instagram"></i>
+                    <h3>Instagram</h3>
+                    <p>@d&oclothing</p>
+                </div>
+            </div>
+        </section>
+    
+    
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 D&O Clothing Store is tottaly fictional and is used for learning purpose.</p>
+    </footer>
+
+
+</body>
+</html>
